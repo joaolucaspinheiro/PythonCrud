@@ -1,0 +1,60 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block titulo %}
+    
+
+    <title>Modelo</title>
+
+    {% endblock %}
+    
+    <link rel="shortcut icon" href= "{% static 'img/icon.png' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+</head>
+
+<body>
+
+    {% block menu %}
+    <div class="bg-secondary">
+        <center>
+            <h3>Menu</h3>
+        </center>
+
+    </div>
+    {% endblock %}
+
+    {% block destaque %}
+    <div class="bg-light">
+        Destaque
+
+    </div>
+    {% endblock %}
+
+    {% block Principal %}
+    <div class="container">
+        <h2>Principal</h2>
+
+    </div>
+    {% endblock %}
+
+    {% block rodape %}
+    <div class="bg-secondary">
+        <center>
+            <h3>Rodapé</h3>
+        </center>
+    </div>
+    {% endblock %}
+
+
+    <script type="module" src="{% static 'js/jquery-3.7.1.min.js'}"></script>
+    <script type="module" src="{% static 'js/bootstrap.min.js'}"></script>
+    <script type="module" src="{% static 'js/popper.min.js'}"></script>
+
+</body>
+
+</html>
