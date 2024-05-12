@@ -7,25 +7,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% block titulo %}
-    
+
 
     <title>Modelo</title>
 
     {% endblock %}
-    
-    <link rel="shortcut icon" href= "{% static 'img/icon.png' %}">
+
+    <link rel="shortcut icon" href="{% static 'img/shop.svg' %}">
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
 </head>
 
 <body>
 
     {% block menu %}
-    <div class="bg-secondary">
-        <center>
-            <h3>Menu</h3>
-        </center>
-
-    </div>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary bg-info" background-color="green">
+        <div class="container-fluid">
+    
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active text-white " aria-current="page" href="{% url 'index' %}">
+                            <img src="{% static 'img/house.svg' %}" alt="Logo" width="30" height="24">
+                            Inicio
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#">
+                            <img src="{% static 'img/shop.svg' %}" alt="Logo" width="30" height="24">
+                            Produtos
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="{% url 'sobre' %}">
+                            <img src="{% static 'img/exclamacao.svg' %}" alt="Logo" width="30" height="24">
+                            Sobre
+                        </a>
+                    </li>
+    
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Cadastros
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Clientes</a></li>
+                            <li><a class="dropdown-item" href="#">Produtos</a></li>
+            
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
     {% endblock %}
 
     {% block destaque %}
@@ -43,17 +80,25 @@
     {% endblock %}
 
     {% block rodape %}
-    <div class="bg-secondary">
+    <div class="bg-secondary text bg-info">
         <center>
-            <h3>Rodapé</h3>
+            <a class="text-white">
+                <p>Desenvolvido por
+                    <a class="text-white" href="https://github.com/joaolucaspinheiro">
+                        João Lucas Pinheiro
+                    </a>
+                </p>
+            </a>
+
         </center>
     </div>
+    </div>
+
     {% endblock %}
 
-
-    <script type="module" src="{% static 'js/jquery-3.7.1.min.js'}"></script>
-    <script type="module" src="{% static 'js/bootstrap.min.js'}"></script>
-    <script type="module" src="{% static 'js/popper.min.js'}"></script>
+    <script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
 
 </body>
 
