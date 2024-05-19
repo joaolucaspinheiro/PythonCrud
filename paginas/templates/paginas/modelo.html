@@ -20,9 +20,9 @@
 <body>
 
     {% block menu %}
-    <nav class="navbar navbar-expand-lg bg-body-tertiary bg-info" background-color="green">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary bg-primary">
         <div class="container-fluid">
-    
+
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
                 aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -31,38 +31,53 @@
                 <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link active text-white " aria-current="page" href="{% url 'index' %}">
-                            <img src="{% static 'img/house.svg' %}" alt="Logo" width="30" height="24">
-                            Inicio
+                            <img src="{% static 'img/house.svg' %}" alt="Logo" width="20" height="18">
+                            Início
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="#">
-                            <img src="{% static 'img/shop.svg' %}" alt="Logo" width="30" height="24">
+                            <img src="{% static 'img/shop.svg' %}" alt="Logo" width="20" height="18">
                             Produtos
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="{% url 'sobre' %}">
-                            <img src="{% static 'img/exclamacao.svg' %}" alt="Logo" width="30" height="24">
-                            Sobre
-                        </a>
+                    
                     </li>
-    
+
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
+
+                        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink"
+                            role="button" data-toggle="dropdown" aria-expanded="false">
+                            <img src="{% static 'img/plus.svg' %}" alt="Logo" width="20" height="18">
                             Cadastros
                         </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Clientes</a></li>
-                            <li><a class="dropdown-item" href="#">Produtos</a></li>
-            
-                        </ul>
+
+                        <div class="dropdown-menu border border-dark " style="background-color: #bfddf3;"
+                            aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" style="background-color: #bfddf3;"
+                                href="{% url 'produto' %}">
+                                <img src="{% static 'img/produtosplus.svg' %}" alt="Logo" width="15" height="24">
+                                Produtos
+                            </a>
+                            <a class="dropdown-item
+                           " style="background-color: #bfddf3;" href="{% url 'cliente' %}">
+                                <img src="{% static 'img/bustoplus.svg' %}" alt="Logo" width="15" height="30">
+                                Clientes
+                            </a>
+                            <a class="dropdown-item" href="#">Algo mais aqui</a>
+                        </div>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{% url 'sobre' %}">
+                                <img src="{% static 'img/exclamacao.svg' %}" alt="Logo" width="20" height="18">
+                                Sobre
+                            </a>
                     </li>
+
                 </ul>
             </div>
         </div>
     </nav>
+
     {% endblock %}
 
     {% block destaque %}
@@ -80,7 +95,7 @@
     {% endblock %}
 
     {% block rodape %}
-    <div class="bg-secondary text bg-info">
+    <div class="bg-primary">
         <center>
             <a class="text-white">
                 <p>Desenvolvido por
@@ -95,7 +110,6 @@
     </div>
 
     {% endblock %}
-
     <script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
     <script src="{% static 'js/popper.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>

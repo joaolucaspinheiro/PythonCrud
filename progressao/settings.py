@@ -38,7 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #ATIVANDO MEUS MÓDULOS 
+    'cpf_field',
     'paginas.apps.PaginasConfig',
+    'cadastros.apps.CadastrosConfig',
 ]
 
 MIDDLEWARE = [
