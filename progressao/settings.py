@@ -39,9 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     #ATIVANDO MEUS MÓDULOS 
-    'cpf_field',
     'paginas.apps.PaginasConfig',
     'cadastros.apps.CadastrosConfig',
+    'crispy_forms',
+    'crispy_bootstrap5',
 ]
 
 MIDDLEWARE = [
@@ -71,7 +72,7 @@ TEMPLATES = [
         },
     },
 ]
-
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
 WSGI_APPLICATION = 'progressao.wsgi.application'
 
 

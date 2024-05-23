@@ -1,5 +1,7 @@
 {%extends 'paginas/modelo.html' %}
 {%load static %}
+{% load crispy_forms_tags %}
+
 
 {% block titulo %}
 
@@ -10,29 +12,12 @@
 {%endblock %}
 
 {% block Principal %}
+
 <h3> Cadastre um produto aqui</h3>
-<form>
-    <div class="form-group mx-sm-3 mb-2 ">
-        <label for="formGroupExampleInput">Produto</label>
-        <input type="text" class="form-control w-25 p-2" id="formGroupExampleInput" style="background-color: #ebf7f7;"
-            placeholder="Digite o nome do produto" required>
-    </div>
+<form action="" method="POST">
+    {% csrf_token %}
 
-    <div class="form-group mx-sm-3 mb-2">
-        <label for="formGroupExampleInput2">Quantidade</label>
-        <input type="number" min="1" class="form-control w-25 p-2" style="background-color: #ebf7f7;"
-            id="formGroupExampleInput2" placeholder="Digite a quantidade de produtos" required>
-    </div>
-
-    <div class="form-group mx-sm-3 mb-2">
-        <label for="formGroupExampleInput2">Preço</label>
-
-        <input type="number" class="form-control w-25 p-2 " style="background-color: #ebf7f7;"
-            id="formGroupExampleInput2" min="1"placeholder="Digite o preço de venda do produto" required>
-
-        <input type="number" class="form-control w-25 p-2" style="background-color: #ebf7f7;"
-            id="formGroupExampleInput2" placeholder="Digite o preço de compra do produto" required>
-    </div>
+    {{ form|crispy }}
 
     <button class="btn btn-danger btn-sm form-group mx-sm-1 mb-2" type="reset"><img
             src="{% static 'img/lixo.svg' %}">Limpar</button>
@@ -42,3 +27,4 @@
 </form>
 
 {%endblock %}
+

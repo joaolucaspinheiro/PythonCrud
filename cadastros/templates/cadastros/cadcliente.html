@@ -1,5 +1,9 @@
 {%extends 'paginas/modelo.html' %}
+
 {%load static %}
+
+{% load crispy_forms_tags %}
+
 
 {% block titulo %}
 
@@ -11,84 +15,57 @@
 
 {% block Principal %}
 <h3> Cadastre um cliente</h3>
-<form>
-    <div class="form-row">
-        <div class="form-group mx-sm-3 mb-2 ">
-            <label for="inputNome">Nome*</label>
-            <input type="text" class="form-control" id="inputName" placeholder="Seu nome">
-        </div>
-        <div class="form-group col-md-6">
-            <label for="inputEmail">Email*</label>
-            <input type="email" class="form-control" id="inputEmail" placeholder="Seu Email">
-        </div>
-        <div class="form-group mx-sm-3 mb-2 ">
-            <label for="inputData_Nasc">Data de Nascimento</label>
-            <input type="text" class="form-control" id="data_nasc" placeholder="DD/MM/AAAA">
-        </div>
-        <div class="form-group mx-sm-3 mb-2">
-            <label for="inputTel">Telefone</label>
-            <input type="number" class="form-control" id="inputnumber" placeholder="(XX) XXXXXXXXX">
-        </div>
-        <div class="form-group mx-sm-3 mb-2 ">
-            <label for="inputCPF">CPF</label>
-            <input type="number" class="form-control" id="input" placeholder="XXX.XXX.XXX-XX">
-        </div>
+
+{% csrf_token %}
+<div class="form-row">
+    <div class="form-group col-md-6 mb-0">
+        {{form.nome_cliente | as_crispy_field }}
+    </div>
+    <div class="form-group col-md-3 mb-0">
+        {{form.cpf | as_crispy_field }}
+    </div>
+    <div class="form-group col-md-4 mb-0">
+        {{form.data_nasc | as_crispy_field }}
+    </div>
+    <div class="form-group col-md-4 mb-0">
+        {{form.email_cliente | as_crispy_field }}
     </div>
 
-    <div class="form-row">
-        <div class="form-group col-md-2">
-            <label for="cep">CEP</label>
-            <input type="number" class="form-control" id="cep" placeholder="00000-000">
-        </div>
-        <div class="form-group mx-sm-3 mb-2 ">
-            <label for="inputCity">Cidade</label>
-            <input type="text" class="form-control" id="Digite sua cidade">
-        </div>
-        <div class="form-group mx-sm-3 mb-2 ">
-
-            <label for="inputState">Estado</label>
-            <select id="inputState" class="form-control">
-                <option selected>Escolha...</option>
-                <option value="AC">Acre</option>
-                <option value="AL">Alagoas</option>
-                <option value="AM">Amazonas</option>
-                <option value="AP">Amapá</option>
-                <option value="BA">Bahia</option>
-                <option value="CE">Ceará</option>
-                <option value="DF">Distrito Federal</option>
-                <option value="ES">Espírito Santo</option>
-                <option value="GO">Goiás</option>
-                <option value="MA">Maranhão</option>
-                <option value="MT">Mato Grosso</option>
-                <option value="MS">Mato Grosso do Sul</option>
-                <option value="MG">Minas Gerais</option>
-                <option value="PA">Pará</option>
-                <option value="PB">Paraíba</option>
-                <option value="PR">Paraná</option>
-                <option value="PE">Pernambuco</option>
-                <option value="PI">Piauí</option>
-                <option value="RJ">Rio de Janeiro</option>
-                <option value="RN">Rio Grande do Norte</option>
-                <option value="RO">Rondônia</option>
-                <option value="RS">Rio Grande do Sul</option>
-                <option value="RR">Roraima</option>
-                <option value="SC">Santa Catarina</option>
-                <option value="SE">Sergipe</option>
-                <option value="SP">São Paulo</option>
-                <option value="TO">Tocantins</option>
-            </select>
-        </div>
-
-        <div class="form-group mx-sm-3 mb-2 ">
-            <label for="inputAddress">Endereço</label>
-            <input type="text" class="form-control" id="inputAddress" placeholder="">
-        </div>
+    <div class="form-group col-md-3 mb-0">
+        {{form.telefone | as_crispy_field }}
     </div>
-    <button class="btn btn-danger btn-sm form-group mx-sm-1 mb-2" type="reset"><img
-            src="{% static 'img/lixo.svg' %}">Limpar</button>
 
-    <button class="btn btn-success btn-sm form-group mx-sm-1 mb-2" type="submit">Enviar <img
-            src="{% static 'img/enviar.svg' %}"> </button>
+    <div class="form-group col-md-2 mb-0">
+        {{form.cep | as_crispy_field }}
+    </div>
+    <div class="form-group col-md-6 mb-0">
+        {{form.estado | as_crispy_field }}
+
+    </div>
+    <div class="form-group col-md-6 mb-0">
+        {{form.cidade | as_crispy_field }}
+    </div>
+</div>
+</div>
+</div>
+<button class="btn btn-danger btn-sm form-group mx-sm-1 mb-2" type="reset"><img
+        src="{% static 'img/lixo.svg' %}">Limpar</button>
+
+<button class="btn btn-success btn-sm form-group mx-sm-1 mb-2" type="submit">Enviar <img
+        src="{% static 'img/enviar.svg' %}"> </button>
 
 </form>
 {%endblock %}
+
+{%block scripts %}
+<script src="{% static 'js/jquery.mask.min.js' %}"> </script>
+
+<script>
+    $(document).ready(function () {
+        $('#id_cpf').mask("000.000.000-00", { reverse: true });
+        $('#id_data_nasc').mask('00/00/0000');
+        $('#id_cep').mask('00000-000');
+    });
+</script>
+
+{% endblock %}

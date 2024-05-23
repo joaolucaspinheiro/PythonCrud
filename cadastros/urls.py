@@ -1,7 +1,7 @@
 from django.urls import path
-from .views import CadProdView, CadClienteView
+from .views import ProdutoCreate, ClienteCreate
 
 urlpatterns = [
-    path('produto/', CadProdView.as_view(), name ='produto'),
-    path('cliente/', CadClienteView.as_view(), name ='cliente'),
+    path('produto/', ProdutoCreate.as_view(), name ='produto'),
+    path('cliente/', ClienteCreate.as_view(), name ='cliente'),
     ]
