@@ -1,0 +1,49 @@
+{% extends 'paginas/modelo.html' %}
+
+{%load static %}
+
+{% block titulo %}
+
+<title>Produtos Cadastrados</title>
+
+{% endblock %}
+
+{% block destaque %}
+{% endblock %}
+
+{%block Principal %}
+<div class=" table-responsive">
+    <h3>Produtos cadastrados: </h3>
+    <hr>
+    <table class="table table-striped table-bordered">
+        <tr class="table-info">
+            <th>Produto</th>
+            <th>Quantidade</th>
+            <th> Preço de Venda</th>
+            <th>Opções</th>
+        </tr>
+
+        {% for produto in object_list %}
+        <tr>
+            <td> {{ produto.nome_produto }}</td>
+            <td> {{ produto.quantidade_produto }} </td>
+            <td> {{ produto.precovenda_produto }}</td>
+            <td>
+                <a href="{% url 'excluir-produto' produto.pk %}" class="btn btn-danger btn-sm form-group mx-sm-1 mb-2" title="Excluir"><img
+                        src="{% static 'img/lixo.svg' %}"></a>
+                <a href="{% url 'editar-produto' produto.pk %}" class="btn btn-primary btn-sm form-group mx-sm-1 mb-2" title="Editar"><img
+                        src="{% static 'img/editar.svg' %}"></a>
+            </td>
+
+        </tr>
+
+        {% empty %}
+        <tr>
+            <td colspan="4"> Nenhum produto registrado.</td>
+        </tr>
+
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock %}

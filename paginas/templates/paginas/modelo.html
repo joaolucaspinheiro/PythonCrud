@@ -36,12 +36,12 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="#">
+                        <a class="nav-link text-white" href="{% url 'listar-produto' %}">
                             <img src="{% static 'img/shop.svg' %}" alt="Logo" width="20" height="18">
                             Produtos
                         </a>
                     </li>
-                    
+
                     </li>
 
                     <li class="nav-item dropdown">
@@ -55,22 +55,22 @@
                         <div class="dropdown-menu border border-dark " style="background-color: #bfddf3;"
                             aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" style="background-color: #bfddf3;"
-                                href="{% url 'produto' %}">
+                                href="{% url 'cadastrar-produto' %}">
                                 <img src="{% static 'img/produtosplus.svg' %}" alt="Logo" width="15" height="24">
                                 Produtos
                             </a>
                             <a class="dropdown-item
-                           " style="background-color: #bfddf3;" href="{% url 'cliente' %}">
+                           " style="background-color: #bfddf3;" href="{% url 'cadastrar-cliente' %}">
                                 <img src="{% static 'img/bustoplus.svg' %}" alt="Logo" width="15" height="30">
                                 Clientes
                             </a>
                             <a class="dropdown-item" href="#">Algo mais aqui</a>
                         </div>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="{% url 'sobre' %}">
-                                <img src="{% static 'img/exclamacao.svg' %}" alt="Logo" width="20" height="18">
-                                Sobre
-                            </a>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="{% url 'sobre' %}">
+                            <img src="{% static 'img/exclamacao.svg' %}" alt="Logo" width="20" height="18">
+                            Sobre
+                        </a>
                     </li>
 
                 </ul>
@@ -95,7 +95,8 @@
     {% endblock %}
 
     {% block rodape %}
-    <div class="bg-primary">
+
+    <footer class="bg-primary">
         <center>
             <a class="text-white">
                 <p>Desenvolvido por
@@ -106,16 +107,25 @@
             </a>
 
         </center>
-    </div>
-    </div>
+    </footer>
 
     {% endblock %}
 
-   
+
     <script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
     <script src="{% static 'js/popper.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
-<!-- Bloco destinado a scripts exclusivos das páginas -->
+    <script src="
+    https://cdn.jsdelivr.net/npm/sweetalert2@11.11.0/dist/sweetalert2.all.min.js
+    "></script>
+    <link href="
+    https://cdn.jsdelivr.net/npm/sweetalert2@11.11.0/dist/sweetalert2.min.css
+    " rel="stylesheet">
+    </script>
+
+
+
+    <!-- Bloco destinado a scripts exclusivos das páginas -->
     {%block scripts %}
 
     {% endblock %}

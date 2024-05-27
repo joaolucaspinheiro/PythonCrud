@@ -1,0 +1,49 @@
+{% extends 'paginas/modelo.html' %}
+
+{%load static %}
+
+{% block titulo %}
+
+<title>Clientes Cadastrados</title>
+
+{% endblock %}
+
+{% block destaque %}
+{% endblock %}
+
+{%block Principal %}
+<div class=" table-responsive">
+    <h3>Clientes cadastrados: </h3>
+    <hr>
+    <table class="table table-striped table-bordered">
+        <tr class="table-info">
+            <th>Nome</th>
+            <th>CPF</th>
+            <th>Telefone</th>
+            <th>Opções</th>
+        </tr>
+
+        {% for clientes in object_list %}
+        <tr>
+            <td> {{ clientes.nome_cliente }}</td>
+            <td> {{ clientes.cpf }} </td>
+            <td> {{ clientes.telefone }}</td>
+            <td>
+                <a href="{% url 'excluir-cliente' clientes.pk %}" class="btn btn-danger btn-sm form-group mx-sm-1 mb-2" title="Excluir"><img
+                        src="{% static 'img/lixo.svg' %}"></a>
+                <a href="{% url 'editar-cliente' clientes.pk %}" class="btn btn-primary btn-sm form-group mx-sm-1 mb-2" title="Editar"><img
+                        src="{% static 'img/editar.svg' %}"></a>
+            </td>
+
+        </tr>
+
+        {% empty %}
+        <tr>
+            <td colspan="3"> Nenhum Cliente registrado.</td>
+        </tr>
+
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock %}
