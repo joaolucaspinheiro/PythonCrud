@@ -1,0 +1,56 @@
+{% extends 'paginas/modelo.html' %}
+{% load static %}
+
+{% block titulo %}
+<title> Excluir Registro</title>
+{% endblock %}
+
+{% block destaque %}
+{% endblock %}
+
+{% block Principal %}
+<h3>
+    Excluir registro
+</h3>
+
+<p class="lead">
+    Os dados excluídos não podem ser recuperados
+</p>
+
+<form id="delete-form1" action="{% url 'excluir-cliente' object.pk %}" method="post">
+    {% csrf_token %}
+    <p>
+        Deseja mesmo excluir o : <b>{{ object}}</b>?
+    </p>
+
+    <button type="button" id="confirm-delete-btn" class="btn btn-danger btn-sm form-group mx-sm-1 mb-2">
+        <img src="{% static 'img/lixo.svg' %}">Excluir
+    </button>
+
+</form>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.getElementById('confirm-delete-btn').addEventListener('click', function (e) {
+            e.preventDefault();
+            Swal.fire({
+                title: 'Tem certeza?',
+                text: 'O registro será excluído permanentemente!',
+                icon: 'warning',
+                showCancelButton: true,
+                cancelButtonText: 'Cancelar',
+                confirmButtonText: 'Excluir',
+                reverseButton: true,
+                confirmButtonColor: 'red'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Enviar o formulário para excluir o produto
+                    document.getElementById('delete-form1').submit();
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}

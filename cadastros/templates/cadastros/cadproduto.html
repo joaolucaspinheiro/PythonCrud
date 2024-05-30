@@ -11,10 +11,11 @@
 {% block destaque %}
 {%endblock %}
 
+
 {% block Principal %}
 
 <h3> Cadastre um produto aqui</h3>
-<form action="" method="POST">
+<form method="POST">
         {% csrf_token %}
 
         {{ form|crispy }}
@@ -22,7 +23,7 @@
         <button class="btn btn-danger btn-sm form-group mx-sm-1 mb-2" type="reset"><img
                         src="{% static 'img/lixo.svg' %}">Limpar</button>
 
-        <button class="btn btn-success btn-sm form-group mx-sm-1 mb-2" onclick="sucesso()" type="submit">Cadastrar <img
+        <button class="btn btn-success btn-sm form-group mx-sm-1 mb-2" type="submit">Cadastrar <img
                         src="{% static 'img/enviar.svg' %}"> </button>
 
 </form>

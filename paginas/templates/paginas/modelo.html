@@ -6,6 +6,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css">
     {% block titulo %}
 
 
@@ -87,6 +90,8 @@
     </div>
     {% endblock %}
 
+
+
     {% block Principal %}
     <div class="container">
         <h2>Principal</h2>
@@ -121,9 +126,20 @@
     <link href="
     https://cdn.jsdelivr.net/npm/sweetalert2@11.11.0/dist/sweetalert2.min.css
     " rel="stylesheet">
+
+    {% if messages %}
+        {% for m in messages %}
+            <script>
+                Swal.fire({
+                    "title": "Parabens!",
+                    "text": "{{m}}",
+                    "icon": "success"
+                })
+             </script>
+        {% endfor %}
+    {% endif %}
+
     </script>
-
-
 
     <!-- Bloco destinado a scripts exclusivos das páginas -->
     {%block scripts %}

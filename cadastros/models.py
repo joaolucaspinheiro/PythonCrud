@@ -6,6 +6,7 @@ class Produto(models.Model):
     quantidade_produto = models.IntegerField("Quantidade:", blank=False)
     precocompra_produto = models.DecimalField("Preço de compra:", max_digits=6, decimal_places=2)
     precovenda_produto = models.DecimalField("Preço de venda:",max_digits=6, decimal_places=2)
+    tipo = models.CharField(max_length=50, default="produto")
     
     
     def __str__(self):
@@ -23,6 +24,7 @@ class Cliente(models.Model):
     cidade = models.CharField(max_length=255)
     estado = models.CharField(max_length=255)
     data_nasc = models.DateField(verbose_name="Data de nascimento")
+    tipo = models.CharField(max_length=50, default="cliente")
     
     def __str__(self):
         return "{} ({})".format(self.id_cliente, self.nome_cliente)
