@@ -13,22 +13,49 @@
 
 
 {% block Principal %}
-
 <h3> Cadastre um produto aqui</h3>
-<form method="POST">
+<p class="lead"> <b>
+        Lembre-se de preencher todos os campos obrigatorios! 
+    </p></b>
+<form method="POST" action="">
         {% csrf_token %}
+        <div class="form-row">
+            <div class="form-group col-md-3 mb-0">
+                <b>  {{ form.nome_produto | as_crispy_field }} </b>
+            </div>
+            <div class="form-group col-md-1 mb-0">
+                <b>  {{ form.quantidade_produto | as_crispy_field }} </b>
+            </div>
+        </div>
+        <br>
+        <div class="form-row">
+            <div class="form-group col-md-2 mb-0">
+                <b> {{ form.precocompra_produto | as_crispy_field }} </b>
+            </div>
+            <div class="form-group col-md-2 mb-0">
+               <b> {{ form.precovenda_produto | as_crispy_field }}</b>
+            </div>
+        </div>
+    
+        {% if not form.instance.pk %}
+        <!-- Se não houver um ID de Produto (ou seja, criando um novo Produto), exibe o botão Limpar -->
+        <button class="btn btn-danger btn-sm form-group mx-sm-1 mb-2" type="reset">
+            <img src="{% static 'img/lixo.svg' %}"> Limpar
+        </button>
+        {% endif %}
+    
+        <button class="btn btn-success btn-sm form-group mx-sm-1 mb-2" type="submit">
+            <img src="{% static 'img/enviar.svg' %}">
+            {% if form.instance.pk %}
+            Atualizar
+            {% else %}
+            Enviar
+            {% endif %}
+        </button>
+    </form>
+    
 
-        {{ form|crispy }}
-
-        <button class="btn btn-danger btn-sm form-group mx-sm-1 mb-2" type="reset"><img
-                        src="{% static 'img/lixo.svg' %}">Limpar</button>
-
-        <button class="btn btn-success btn-sm form-group mx-sm-1 mb-2" type="submit">Cadastrar <img
-                        src="{% static 'img/enviar.svg' %}"> </button>
-
-</form>
-
-{%endblock %}
+{% endblock %}
 
 
 {%block scripts %}

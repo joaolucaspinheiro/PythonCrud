@@ -1,74 +1,82 @@
-{%extends 'paginas/modelo.html' %}
-
-{%load static %}
-
+{% extends 'paginas/modelo.html' %}
+{% load static %}
 {% load crispy_forms_tags %}
 
-
 {% block titulo %}
-
-<title> Cadastros de Cliente</title>
+<title>Cadastro de Cliente</title>
 {% endblock %}
 
 {% block destaque %}
-{%endblock %}
+{% endblock %}
 
 {% block Principal %}
-<h3> Cadastre um cliente</h3>
+<h3>Cadastre um Cliente</h3>
+<p class="lead">
+    Preencha o formulário abaixo para cadastrar um novo cliente.
+</p>
 
-<form method="post" action="">
-
+<form method="post" action="" id="cadastroForm">
     {% csrf_token %}
-    <div class="form-row">
-        <div class="form-group col-md-6 mb-0">
-            {{form.nome_cliente | as_crispy_field }}
+    <div class="form-row align-items-start">
+        <div class="form-group col-md-6">
+            {{ form.nome_cliente | as_crispy_field }}
         </div>
-        <div class="form-group col-md-3 mb-0">
-            {{form.cpf | as_crispy_field }}
+        <div class="form-group col-md-3">
+            {{ form.cpf | as_crispy_field }}
         </div>
-        <div class="form-group col-md-4 mb-0">
-            {{form.data_nasc | as_crispy_field }}
-        </div>
-        <div class="form-group col-md-4 mb-0">
-            {{form.email_cliente | as_crispy_field }}
-        </div>
-
-        <div class="form-group col-md-3 mb-0">
-            {{form.telefone | as_crispy_field }}
-        </div>
-
-        <div class="form-group col-md-2 mb-0">
-            {{form.cep | as_crispy_field }}
-        </div>
-        <div class="form-group col-md-6 mb-0">
-            {{form.estado | as_crispy_field }}
-
-        </div>
-        <div class="form-group col-md-6 mb-0">
-            {{form.cidade | as_crispy_field }}
-        </div>
-        <div class="form-group col-md-6 mb-0">
-            {{form.rua | as_crispy_field }}
-        </div>
-        <div class="form-group col-md-6 mb-0">
-            {{form.numero | as_crispy_field }}
+        <div class="form-group col-md3">
+            {{ form.data_nasc | as_crispy_field }}
         </div>
     </div>
-    <button class="btn btn-danger btn-sm form-group mx-sm-1 mb-2" type="reset"><img
-            src="{% static 'img/lixo.svg' %}">Limpar</button>
-
-    <button class="btn btn-success btn-sm form-group mx-sm-1 mb-2" type="submit">Enviar <img
-            src="{% static 'img/enviar.svg' %}"> Cadastrar</button>
-
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            {{ form.email_cliente | as_crispy_field }}
+        </div>
+        <div class="form-group col-md-3">
+            {{ form.telefone | as_crispy_field }}
+        </div>
+        <div class="form-group col-md-3">
+            {{ form.cep | as_crispy_field }}
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-3">
+            {{ form.estado| as_crispy_field }}
+        </div>
+        <div class="form-group col-md-3">
+            {{ form.cidade | as_crispy_field }}
+        </div>
+        <div class="form-group col-md-3">
+            {{ form.bairro | as_crispy_field }}
+        </div>
+        <div class="form-group col-md-3">
+            {{ form.rua | as_crispy_field }}
+        </div>
+        <div class="form-group col-md-3">
+            {{ form.numero | as_crispy_field }}
+        </div>
+    </div>
+    {% if not form.instance.pk %}
+    <!-- Se não houver um ID de cliente (ou seja, criando um novo cliente), exibe o botão Limpar -->
+    <button class="btn btn-danger" type="reset">
+        <img src="{% static 'img/lixo.svg' %}"> Limpar
+    </button>
+    {% endif %}
+    <button class="btn btn-success" type="submit">
+        <img src="{% static 'img/enviar.svg' %}">
+        {% if form.instance.pk %}
+        Atualizar
+        {% else %}
+        Enviar
+        {% endif %}
+    </button>
 </form>
-{%endblock %}
+{% endblock %}
 
-{%block scripts %}
-<script src="{% static 'js/jquery.mask.min.js' %}"> 
-</script>
-
+{% block scripts %}
+<script src="{% static 'js/jquery.mask.min.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script>
-    
     $(document).ready(function () {
         $('#id_cpf').mask("000.000.000-00", { reverse: true });
         $('#id_data_nasc').mask('00/00/0000');
@@ -76,14 +84,38 @@
         var SPMaskBehavior = function (val) {
             return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
         },
-            spOptions = {
-                onKeyPress: function (val, e, field, options) {
-                    field.mask(SPMaskBehavior.apply({}, arguments), options);
-                }
-            };
-
+        spOptions = {
+            onKeyPress: function (val, e, field, options) {
+                field.mask(SPMaskBehavior.apply({}, arguments), options);
+            }
+        };
         $('#id_telefone').mask(SPMaskBehavior, spOptions);
+
+        $('#id_cep').blur(function () {
+            var cep = $(this).val().replace(/\D/g, '');
+            if (cep.length !== 8) {
+                return;
+            }
+            $.getJSON('https://viacep.com.br/ws/' + cep + '/json/', function (data) {
+                if (!("erro" in data)) {
+                    $('#id_estado').val(data.uf);
+                    $('#id_cidade').val(data.localidade);
+                    $('#id_rua').val(data.logradouro);
+                    $('#id_numero').focus();
+                    $('#id_bairro').val(data.bairro);
+                } else {
+                    Swal.fire({
+                        title: 'CEP não encontrado',
+                        text: 'O CEP informado não foi encontrado, verifique novamente!',
+                        icon: 'warning',
+                    })
+                }                                           
+            });
+        });
+
+        // Definindo os campos cidade e estado como readonly
+        $('#id_cidade').attr('readonly', true);
+        $('#id_estado').attr('readonly', true);
     });
 </script>
-
 {% endblock %}

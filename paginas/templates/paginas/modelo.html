@@ -41,7 +41,7 @@
                     <li class="nav-item">
                         <a class="nav-link text-white" href="{% url 'listar-produto' %}">
                             <img src="{% static 'img/shop.svg' %}" alt="Logo" width="20" height="18">
-                            Produtos
+                            Vendas
                         </a>
                     </li>
 
@@ -60,14 +60,34 @@
                             <a class="dropdown-item" style="background-color: #bfddf3;"
                                 href="{% url 'cadastrar-produto' %}">
                                 <img src="{% static 'img/produtosplus.svg' %}" alt="Logo" width="15" height="24">
-                                Produtos
+                                Produto
                             </a>
                             <a class="dropdown-item
                            " style="background-color: #bfddf3;" href="{% url 'cadastrar-cliente' %}">
                                 <img src="{% static 'img/bustoplus.svg' %}" alt="Logo" width="15" height="30">
+                                Cliente
+                            </a>
+                        </div>
+                    <li class="nav-item dropdown">
+
+                        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink"
+                            role="button" data-toggle="dropdown" aria-expanded="false">
+                            <img src="{% static 'img/eye.svg' %}" alt="Logo" width="20" height="18">
+                            Listar
+                        </a>
+
+                        <div class="dropdown-menu border border-dark " style="background-color: #bfddf3;"
+                            aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" style="background-color: #bfddf3;"
+                                href="{% url 'listar-produto' %}">
+                                <img src="{% static 'img/produtosplus.svg' %}" alt="Logo" width="15" height="24">
+                                Produtos
+                            </a>
+                            <a class="dropdown-item
+                               " style="background-color: #bfddf3;" href="{% url 'listar-cliente' %}">
+                                <img src="{% static 'img/bustoplus.svg' %}" alt="Logo" width="15" height="30">
                                 Clientes
                             </a>
-                            <a class="dropdown-item" href="#">Algo mais aqui</a>
                         </div>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="{% url 'sobre' %}">
@@ -126,17 +146,24 @@
     <link href="
     https://cdn.jsdelivr.net/npm/sweetalert2@11.11.0/dist/sweetalert2.min.css
     " rel="stylesheet">
+    <link href="https://cdn.datatables.net/v/dt/jszip-3.10.1/dt-2.0.8/b-3.0.2/b-html5-3.0.2/datatables.min.css"
+        rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+    <script
+        src="https://cdn.datatables.net/v/dt/jszip-3.10.1/dt-2.0.8/b-3.0.2/b-html5-3.0.2/datatables.min.js"></script>
+
 
     {% if messages %}
-        {% for m in messages %}
-            <script>
-                Swal.fire({
-                    "title": "Parabens!",
-                    "text": "{{m}}",
-                    "icon": "success"
-                })
-             </script>
-        {% endfor %}
+    {% for m in messages %}
+    <script>
+        Swal.fire({
+            "title": "Sucesso!",
+            "text": "{{m}}",
+            "icon": "success"
+        })
+    </script>
+    {% endfor %}
     {% endif %}
 
     </script>

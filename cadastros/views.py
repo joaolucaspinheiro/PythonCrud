@@ -17,10 +17,13 @@ class ProdutoCreate(CreateView):
 class ClienteCreate(CreateView):
     model = Cliente
     fields = ['nome_cliente','data_nasc', 'cpf', 'email_cliente',
-              'telefone','cep', 'estado', 'cidade', 'rua', 'numero']
+              'telefone','cep', 'estado', 'cidade', 'rua', 'numero', 'bairro']
     template_name = "cadastros/cadcliente.html"
     success_url = reverse_lazy('listar-cliente')
- 
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.success(self.request, "Cliente cadastrado com sucesso!")
+        return response
     
     
     
@@ -33,7 +36,7 @@ class ProdutoUpdate(UpdateView):
     success_url = reverse_lazy('listar-produto')
     def form_valid(self, form):
         response = super().form_valid(form)
-        messages.success(self.request, "Produto atualizado com sucesso!")
+        messages.success(self.request, "Dados do produto atualizados com sucesso!")
         return response
    
   
@@ -44,6 +47,10 @@ class ClienteUpdate(UpdateView):
               'telefone','cep', 'estado', 'cidade', 'rua', 'numero']
     template_name = "cadastros/cadcliente.html"
     success_url = reverse_lazy('listar-cliente')
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.success(self.request, "Dados do cliente atualizados com sucesso!")
+        return response        
     
 ################## DELETE VIEW #################
     
@@ -62,6 +69,10 @@ class ClienteDelete(DeleteView):
     model = Cliente
     template_name = "cadastros/form-excluirCliente.html"
     success_url = reverse_lazy('listar-cliente')
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.success(self.request, "Cliente deletado com sucesso!")
+        return response    
     
     ################## LIST VIEW #################
     
