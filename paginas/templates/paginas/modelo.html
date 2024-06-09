@@ -23,7 +23,7 @@
 <body>
 
     {% block menu %}
-    <nav class="navbar navbar-expand-lg bg-body-tertiary bg-primary">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary" style ="background-color:#73797f">
         <div class="container-fluid">
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
@@ -55,15 +55,15 @@
                             Cadastros
                         </a>
 
-                        <div class="dropdown-menu border border-dark " style="background-color: #bfddf3;"
+                        <div class="dropdown-menu border border-dark " style="background-color: #ffffff;"
                             aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" style="background-color: #bfddf3;"
+                            <a class="dropdown-item" style="background-color: #ffffff;"
                                 href="{% url 'cadastrar-produto' %}">
                                 <img src="{% static 'img/produtosplus.svg' %}" alt="Logo" width="15" height="24">
                                 Produto
                             </a>
                             <a class="dropdown-item
-                           " style="background-color: #bfddf3;" href="{% url 'cadastrar-cliente' %}">
+                           " style="background-color: #ffffff;" href="{% url 'cadastrar-cliente' %}">
                                 <img src="{% static 'img/bustoplus.svg' %}" alt="Logo" width="15" height="30">
                                 Cliente
                             </a>
@@ -76,15 +76,15 @@
                             Listar
                         </a>
 
-                        <div class="dropdown-menu border border-dark " style="background-color: #bfddf3;"
+                        <div class="dropdown-menu border border-dark " style="background-color: #ffffff;"
                             aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" style="background-color: #bfddf3;"
+                            <a class="dropdown-item" style="background-color: #ffffff;"
                                 href="{% url 'listar-produto' %}">
                                 <img src="{% static 'img/produtosplus.svg' %}" alt="Logo" width="15" height="24">
                                 Produtos
                             </a>
                             <a class="dropdown-item
-                               " style="background-color: #bfddf3;" href="{% url 'listar-cliente' %}">
+                               " style="background-color: #ffffff;" href="{% url 'listar-cliente' %}">
                                 <img src="{% static 'img/bustoplus.svg' %}" alt="Logo" width="15" height="30">
                                 Clientes
                             </a>
@@ -103,12 +103,6 @@
 
     {% endblock %}
 
-    {% block destaque %}
-    <div class="bg-light">
-        Destaque
-
-    </div>
-    {% endblock %}
 
 
 
@@ -121,7 +115,7 @@
 
     {% block rodape %}
 
-    <footer class="bg-primary">
+    <footer style ="background-color:#73797f" class = "fixed-bottom" >
         <center>
             <a class="text-white">
                 <p>Desenvolvido por

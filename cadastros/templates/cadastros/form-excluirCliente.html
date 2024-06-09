@@ -5,8 +5,7 @@
 <title> Excluir Registro</title>
 {% endblock %}
 
-{% block destaque %}
-{% endblock %}
+
 
 {% block Principal %}
 <h3>
@@ -46,7 +45,7 @@
                 confirmButtonColor: 'red'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    // Enviar o formulário para excluir o produto
+                    // Enviar o formulário para excluir o cliente
                     document.getElementById('delete-form1').submit();
                 }
             });

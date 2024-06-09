@@ -14,9 +14,10 @@ class Produto(models.Model):
         return "{} ({})UN".format(self.nome_produto, self.quantidade_produto)
     
 def validate_cep(cep):
-    cep = cep.replace('-','')
+    #Renive caracteres não numericos
+    cep = cep.replace('-','')  
     if not cep.isdigit() or len(cep) != 8:
-        raise ValidationError("O CEP está incompleto! ")
+        raise ValidationError("O CEP está incompleto! ") 
  
 def validate_cpf(value):
         # Remove caracteres não numéricos
@@ -69,7 +70,7 @@ class Cliente(models.Model):
         return "({}): {}".format(self.id_cliente, self.nome_cliente)
     
     def save(self, *args, **kwargs):
-        # Remova a máscara do CPF antes de salvar
+        # Remove a máscara do CPF antes de salvar
         self.cpf = self.cpf.replace('.', '').replace('-', '')
         super().save(*args, **kwargs)
         
